@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--文本大小，h1到h6-->
+    <dimen name="h1">19.2sp</dimen>
+    <dimen name="h2">16sp</dimen>
+    <!--h3针对效果图中的17px-->
+    <dimen name="h3">13.6sp</dimen>
+    <!--h4针对效果图中的14px-->
+    <dimen name="h4">12sp</dimen>
+    <!--h5针对效果图中的12px-->
+    <dimen name="h5">10.4sp</dimen>
+    <!--h6针对效果图中的10px-->
+    <dimen name="h6">8.8sp</dimen>
+    <!--h7针对效果图中的8px-->
+    <dimen name="h7">6.8sp</dimen>
+    <!--标题文字大小-->
+    <dimen name="toolbarTextSize">14sp</dimen>
+    <!--常用阴影值-->
+    <dimen name="common_elevation">6px</dimen>
+
+    <!--常用间距-->
+    <dimen name="commonSpacing2">1.6dp</dimen>
+    <dimen name="commonSpacing4">3dp</dimen>
+    <dimen name="commonSpacing6">4.8dp</dimen>
+    <dimen name="commonSpacing8">6.4dp</dimen>
+    <dimen name="commonSpacing10">8dp</dimen>
+    <dimen name="commonSpacing12">9.6dp</dimen>
+    <dimen name="commonSpacing14">11.2dp</dimen>
+    <dimen name="commonSpacing16">12.8dp</dimen>
+    <dimen name="commonSpacing18">14.4dp</dimen>
+    <dimen name="commonSpacing20">16dp</dimen>
+    <dimen name="commonSpacing22">17.6dp</dimen>
+    <dimen name="commonSpacing24">19.2dp</dimen>
+    <dimen name="commonSpacing26">20.8dp</dimen>
+    <dimen name="commonSpacing28">22.4dp</dimen>
+    <dimen name="commonSpacing30">24dp</dimen>
+    <dimen name="commonSpacing32">25.6dp</dimen>
+    <dimen name="commonSpacing34">27.2dp</dimen>
+    <dimen name="commonSpacing36">28.6dp</dimen>
+    <dimen name="commonSpacing40">32dp</dimen>
+    <dimen name="commonSpacing44">35.2dp</dimen>
+    <dimen name="commonSpacing50">40dp</dimen>
+</resources>
