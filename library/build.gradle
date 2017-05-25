@@ -1,5 +1,13 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
 
+group='cn.ycoder.android.library'
+
+ext {
+    PUBLISH_GROUP_ID = 'cn.ycoder.android.library'
+    PUBLISH_ARTIFACT_ID = 'yy-library'
+    PUBLISH_VERSION = '0.1.0'
+}
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
@@ -21,6 +29,12 @@ android {
         }
     }
     resourcePrefix 'yy_library_'
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -58,3 +72,5 @@ dependencies {
     compile rootProject.ext.dependencies["arouter-annotation"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 }
+
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
