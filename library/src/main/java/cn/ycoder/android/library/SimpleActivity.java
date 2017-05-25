@@ -65,11 +65,9 @@ public class SimpleActivity extends BaseActivity {
             //类型处理，可增加
             if (StringUtils.isBoolean(value)) {
               args.putBoolean(key, Boolean.parseBoolean(value));
-            } else if (StringUtils.isInteger(value)) {
-              args.putInt(key, Integer.parseInt(value));
-            } else {
-              args.putString(key, value);
+              continue;
             }
+            args.putString(key, value);
           }
         }
         fragment.setArguments(args);

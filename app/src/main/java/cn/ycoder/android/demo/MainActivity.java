@@ -50,7 +50,7 @@ public class MainActivity extends ToolbarActivity implements NotePresenter.View 
     this.txt.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        ARouter.getInstance().build(RouteUtil.builderWithFragment("/main/test"))
+        ARouter.getInstance().build(RouteUtil.builderWithFragment("/main/test","/main/AAA?tab=1"))
             .withString("msg", msg)
             .navigation(MainActivity.this);
       }

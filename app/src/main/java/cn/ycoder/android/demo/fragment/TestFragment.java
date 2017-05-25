@@ -26,6 +26,9 @@ public class TestFragment extends ToolbarFragment {
   TextView text;
   @Autowired
   String msg;
+  @Autowired
+  int tab;
+
 
   @Nullable
   @Override
