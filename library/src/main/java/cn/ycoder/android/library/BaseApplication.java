@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 
+import cn.ycoder.android.library.store.AppTagStore;
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.launcher.ARouter;
 
@@ -36,6 +37,8 @@ public abstract class BaseApplication extends Application {
     return app;
   }
 
+  private AppTagStore mAppTag;
+
   @Override
   public void onCreate() {
     super.onCreate();
@@ -53,6 +56,7 @@ public abstract class BaseApplication extends Application {
         ARouter.openDebug();
       }
       ARouter.init(app);
+      mAppTag = initAppTag();
     }
   }
 
@@ -61,6 +65,8 @@ public abstract class BaseApplication extends Application {
    * 仅初始化一次
    */
   public abstract void onlyInit();
+
+  public abstract AppTagStore initAppTag();
 
   private boolean isMainProcess(Context context) {
     ActivityManager am = ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE));
@@ -113,10 +119,19 @@ public abstract class BaseApplication extends Application {
   /**
    * 得到tag数据
    */
-  public abstract Object getTag(String tag);
+  public Object getTag(String tag) {
+    if (mAppTag != null) {
+      return mAppTag.getTag(tag);
+    }
+    return null;
+  }
 
   /**
    * 设置tag数据
    */
-  public abstract void setTag(String tag, Object user);
+  public void setTag(String tag, Object value) {
+    if (mAppTag != null) {
+      mAppTag.setTag(tag, value);
+    }
+  }
 }

@@ -1,7 +1,9 @@
 package cn.ycoder.android.demo;
 
+import cn.ycoder.android.demo.store.AppStore;
 import cn.ycoder.android.library.BaseApplication;
 import cn.ycoder.android.library.route.UriReplaceService;
+import cn.ycoder.android.library.store.AppTagStore;
 
 /**
  * @author 启研
@@ -18,27 +20,16 @@ public class App extends BaseApplication {
 
   }
 
+  @Override
+  public AppTagStore initAppTag() {
+    return new AppStore();
+  }
+
   /**
    * 获得需转换的路径服务
    */
   @Override
   public UriReplaceService[] getUriReplaceService() {
     return null;
-  }
-
-  /**
-   * 得到tag
-   */
-  @Override
-  public Object getTag(String tag) {
-    return null;
-  }
-
-  /**
-   * 设置tag数据
-   */
-  @Override
-  public void setTag(String tag, Object user) {
-
   }
 }

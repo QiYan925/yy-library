@@ -7,10 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import cn.ycoder.android.demo.R;
+import cn.ycoder.android.demo.store.AppStore;
+import cn.ycoder.android.library.BaseApplication;
 import cn.ycoder.android.library.ToolbarFragment;
+import cn.ycoder.android.library.tool.ToastUtils;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.google.gson.Gson;
 
 /**
  * @author 启研
@@ -18,23 +22,28 @@ import com.alibaba.android.arouter.launcher.ARouter;
  */
 @Route(path = "/main/test")
 public class TestFragment extends ToolbarFragment {
-    TextView text;
-    @Autowired
-    String msg;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frag_test, container, false);
-        super.initToolbar(view, "测试界面");
-        text = (TextView) view.findViewById(R.id.text);
-        ARouter.getInstance().inject(this);
-        text.setText("显示的是：" + msg);
-        return view;
-    }
+  TextView text;
+  @Autowired
+  String msg;
 
-    @Override
-    public boolean canBack() {
-        return true;
-    }
+  @Nullable
+  @Override
+  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+      @Nullable Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.frag_test, container, false);
+    super.initToolbar(view, "测试界面");
+    text = (TextView) view.findViewById(R.id.text);
+    ARouter.getInstance().inject(this);
+    text.setText("显示的是：" + msg);
+    Gson gson=new Gson();
+    ToastUtils.showLong(BaseApplication.getInstance().getTag(AppStore.KEY_TAG1).toString()
+        + BaseApplication.getInstance().getTag(AppStore.KEY_TAG2).toString());
+    return view;
+  }
+
+  @Override
+  public boolean canBack() {
+    return true;
+  }
 }

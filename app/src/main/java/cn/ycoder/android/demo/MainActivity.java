@@ -7,6 +7,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import cn.ycoder.android.demo.presenter.NotePresenter;
+import cn.ycoder.android.demo.store.AppStore;
+import cn.ycoder.android.library.BaseApplication;
 import cn.ycoder.android.library.ToolbarActivity;
 import cn.ycoder.android.library.WebActivity;
 import cn.ycoder.android.library.route.RouteUtil;
@@ -35,9 +37,11 @@ public class MainActivity extends ToolbarActivity implements NotePresenter.View 
     findViewById(R.id.baidu).setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        startActivity(WebActivity.newIntent(getBaseContext(),"","http://www.baidu.com"));
+        startActivity(WebActivity.newIntent(getBaseContext(), "", "http://www.baidu.com"));
       }
     });
+    BaseApplication.getInstance().setTag(AppStore.KEY_TAG1, "我是什么:");
+    BaseApplication.getInstance().setTag(AppStore.KEY_TAG2, "法海");
   }
 
   @Override
