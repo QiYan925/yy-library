@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="all">
+  <item name="toolbar" type="id"/>
+  <item name="container" type="id"/>
+  <item name="multipleStatusView" type="id"/>
+  <item name="contentView" type="id"/>
+  <item name="emptyView" type="id"/>
+  <item name="errorView" type="id"/>
+  <item name="loadingView" type="id"/>
+  <item name="noNetworkView" type="id"/>
+
+  <item name="emptyRetryView" type="id"/>
+  <item name="errorRetryView" type="id"/>
+  <item name="errorTextView" type="id"/>
+  <item name="noNetworkRetryView" type="id"/>
+</resources>

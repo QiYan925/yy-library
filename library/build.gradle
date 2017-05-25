@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    resourcePrefix 'yy_library_'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //Android布局
+    compile rootProject.ext.dependencies["appcompat-v7"]
+    compile rootProject.ext.dependencies["recyclerview-v7"]
+    compile rootProject.ext.dependencies["design"]
+    compile rootProject.ext.dependencies["constraint-layout"]
+    //控件注入
+    compile rootProject.ext.dependencies["butterknife"]
+    //RxJava
+    compile rootProject.ext.dependencies["rxjava"]
+    //RxAndroid
+    compile rootProject.ext.dependencies["rxandroid"]
+    //防止RxJava中subscription导致内存泄漏
+    compile(rootProject.ext.dependencies["rxlifecycle-components"], {
+        exclude group: 'com.google.code.findbugs'
+        exclude group: 'com.android.support'
+    })
+    //网络请求
+    compile rootProject.ext.dependencies["retrofit"]
+    compile rootProject.ext.dependencies["logging-interceptor"]
+    compile rootProject.ext.dependencies["converter-gson"]
+    compile rootProject.ext.dependencies["adapter-rxjava2"]
+    //列表控件
+    compile rootProject.ext.dependencies["multitype"]
+    //弹出框
+    compile rootProject.ext.dependencies["material-dialogs"]
+    //下拉加载
+    compile rootProject.ext.dependencies["ultra-ptr"]
+
+    //路由https://github.com/alibaba/ARouter
+    compile rootProject.ext.dependencies["arouter-api"]
+    compile rootProject.ext.dependencies["arouter-annotation"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+}

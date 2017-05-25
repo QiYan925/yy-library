@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="all">
+  <string name="web_action_refresh">刷新</string>
+  <string name="web_action_copy_url">复制链接</string>
+  <string name="web_action_open_url">浏览器打开</string>
+  <string name="tip_web_copy_done">复制成功</string>
+  <string name="tip_web_open_fail">打开失败，没有找到可以打开该链接的其它应用 :(</string>
+
+  <string name="loading_again">重新加载</string>
+  <string name="empty_view_hint">暂无数据</string>
+  <string name="error_view_hint">加载失败</string>
+  <string name="no_network_view_hint">没有网络，请检查网络设置哦</string>
+</resources>

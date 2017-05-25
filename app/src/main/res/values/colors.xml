@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--通知栏及标题栏-->
+    <color name="colorPrimary">#960E06</color>
+    <color name="colorPrimaryDark">#810700</color>
+    <color name="colorAccent">#960E06</color>
+    <color name="colorAccent_deep">#810700</color>
+    <color name="titleTextColor">#FFFFFF</color>
+    <color name="windowBackground">#f7f7f7</color>
+    <!--系统级别颜色-->
+    <color name="transparent">@android:color/transparent</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_deep">#d9d9d9</color>
+
+    <color name="black">#000000</color>
+    <color name="gray">#333333</color>
+    <color name="red">#FF0000</color>
+    <!--内容区域颜色-->
+    <color name="content_bg">#ebebeb</color>
+    <!--分割线颜色-->
+    <color name="list_line_light">#f7f7f7</color>
+    <color name="list_line_deep">#e4e4e4</color>
+    <!--tab相关颜色-->
+    <color name="tabIndicatorColor">@color/colorAccent</color>
+    <color name="tabBackground">@color/white</color>
+    <color name="tabTextColor">@color/colorAccent</color>
+    <!--正文颜色-->
+    <color name="title">#333333</color>
+    <!--副标题颜色-->
+    <color name="subtitle">#666666</color>
+    <!--容易忽略的颜色，如未被选择项-->
+    <color name="ignore_title">#999999</color>
+    <!--注视及提示颜色-->
+    <color name="hint">#999999</color>
+    <color name="dialog_content">#777777</color>
+    <!--表头颜色-->
+    <color name="table_head">@color/colorPrimary</color>
+</resources>

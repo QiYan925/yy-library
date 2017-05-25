@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <attr format="dimension" name="toolbarTitleSize" tools:ignore="all"/>
+
+  <declare-styleable name="NumberProgressBar" tools:ignore="all">
+    <attr format="integer" name="progress"/>
+    <attr format="integer" name="max"/>
+    <attr format="color" name="progress_unreached_color"/>
+    <attr format="color" name="progress_reached_color"/>
+    <attr format="dimension" name="progress_reached_bar_height"/>
+    <attr format="dimension" name="progress_unreached_bar_height"/>
+    <attr format="dimension" name="progress_text_size"/>
+    <attr format="color" name="progress_text_color"/>
+    <attr format="dimension" name="progress_text_offset"/>
+    <attr format="enum" name="progress_text_visibility">
+      <enum name="visible" value="0"/>
+      <enum name="invisible" value="1"/>
+    </attr>
+  </declare-styleable>
+  <declare-styleable name="yy_library_Themes" tools:ignore="all">
+    <attr format="reference" name="numberProgressBarStyle"/>
+  </declare-styleable>
+
+  <declare-styleable name="MultipleStatusView" tools:ignore="all">
+    <attr format="reference" name="loadingView"/>
+    <attr format="reference" name="errorView"/>
+    <attr format="reference" name="emptyView"/>
+    <attr format="reference" name="noNetworkView"/>
+    <attr format="reference" name="contentView"/>
+  </declare-styleable>
+</resources>

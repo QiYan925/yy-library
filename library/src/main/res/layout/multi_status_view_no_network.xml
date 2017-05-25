@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@id/noNetworkView"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:gravity="center"
+  android:orientation="vertical"
+  tools:ignore="all">
+
+  <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:src="@drawable/multi_icon_no_network"
+    tools:ignore="ContentDescription"/>
+
+  <TextView
+    style="@style/MultipleStatusView.Content"
+    android:layout_margin="20dp"
+    android:text="@string/no_network_view_hint"/>
+
+  <TextView
+    android:id="@id/noNetworkRetryView"
+    style="@style/MultipleStatusView.Content"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:background="@drawable/selector_storke_theme"
+    android:text="@string/loading_again"
+    android:textColor="?attr/colorAccent"/>
+</LinearLayout>
