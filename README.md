@@ -1,6 +1,6 @@
 # yy-library
-this is a android library
-### Step 2. Add it in your root build.gradle at the end of repositories:
+> epsoft-view为公司控件，暂不做公用库，请自行拷到项目修改
+### Step 1. Add it in your root build.gradle at the end of repositories:
 		allprojects {
 				repositories {
 					...
