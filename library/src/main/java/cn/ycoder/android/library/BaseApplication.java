@@ -109,4 +109,14 @@ public abstract class BaseApplication extends Application {
    * 获得需转换的路径服务
    */
   public abstract UriReplaceService[] getUriReplaceService();
+
+  /**
+   * 得到tag数据
+   */
+  public abstract Object getTag(String tag);
+
+  /**
+   * 设置tag数据
+   */
+  public abstract void setTag(String tag, Object user);
 }

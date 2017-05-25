@@ -25,4 +25,20 @@ public class App extends BaseApplication {
   public UriReplaceService[] getUriReplaceService() {
     return null;
   }
+
+  /**
+   * 得到tag
+   */
+  @Override
+  public Object getTag(String tag) {
+    return null;
+  }
+
+  /**
+   * 设置tag数据
+   */
+  @Override
+  public void setTag(String tag, Object user) {
+
+  }
 }
