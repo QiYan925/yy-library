@@ -30,4 +30,4 @@ proguard/
 .gradle
 /build
 /captures
-/gradle
+# /gradle
