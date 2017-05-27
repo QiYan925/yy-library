@@ -13,7 +13,7 @@ public class StringPreferenceLoader extends PreferenceLoader {
     super(context, key);
   }
 
-  public String load() throws NoSuchPreferenceFoundException {
+  public String load() {
     SharedPreferences appSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
     String value = appSharedPrefs.getString(getKey(), "");
     return value;
