@@ -1,5 +1,6 @@
 package cn.ycoder.android.demo;
 
+import android.content.Context;
 import cn.ycoder.android.demo.store.AppStore;
 import cn.ycoder.android.library.BaseApplication;
 import cn.ycoder.android.library.route.UriReplaceService;
@@ -21,7 +22,7 @@ public class App extends BaseApplication {
   }
 
   @Override
-  public AppTagStore initAppTag() {
+  public AppTagStore initAppTag(Context context) {
     return new AppStore();
   }
 
