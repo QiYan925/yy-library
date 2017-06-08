@@ -11,6 +11,7 @@ import cn.ycoder.android.demo.store.AppStore;
 import cn.ycoder.android.library.BaseApplication;
 import cn.ycoder.android.library.ToolbarFragment;
 import cn.ycoder.android.library.tool.ToastUtils;
+import cn.ycoder.android.library.widget.MultipleStatusView;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -22,7 +23,7 @@ import com.google.gson.Gson;
  */
 @Route(path = "/main/test")
 public class TestFragment extends ToolbarFragment {
-
+  MultipleStatusView multipleStatusView;
   TextView text;
   @Autowired
   String msg;
@@ -37,6 +38,8 @@ public class TestFragment extends ToolbarFragment {
     View view = inflater.inflate(R.layout.frag_test, container, false);
     super.initToolbar(view, "测试界面");
     text = (TextView) view.findViewById(R.id.text);
+    multipleStatusView= (MultipleStatusView) view.findViewById(R.id.multipleStatusView);
+    multipleStatusView.showLoading();
     ARouter.getInstance().inject(this);
     text.setText("显示的是：" + msg);
     Gson gson=new Gson();

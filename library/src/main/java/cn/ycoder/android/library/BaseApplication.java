@@ -47,6 +47,7 @@ public abstract class BaseApplication extends Application {
       //工具使用App
       Utils.init(app, app.getPackageName());
       RxJavaPlugins.setErrorHandler(ErrorHandlers.displayErrorConsumer(app));
+      mAppTag = initAppTag(this);
       onlyInit();
       //开启日志
       LogUtils.setAllEnable(debug);
@@ -56,7 +57,6 @@ public abstract class BaseApplication extends Application {
         ARouter.openDebug();
       }
       ARouter.init(app);
-      mAppTag = initAppTag();
     }
   }
 
@@ -66,7 +66,7 @@ public abstract class BaseApplication extends Application {
    */
   public abstract void onlyInit();
 
-  public abstract AppTagStore initAppTag();
+  public abstract AppTagStore initAppTag(Context context);
 
   private boolean isMainProcess(Context context) {
     ActivityManager am = ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE));
