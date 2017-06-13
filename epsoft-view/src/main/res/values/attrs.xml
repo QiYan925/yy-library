@@ -31,7 +31,7 @@
     <enum name="bothAll" value="3"/>
   </attr>
 
-  <attr format="enum" name="textDirection">
+  <attr format="enum" name="pureDirection">
     <enum name="left" value="0"/>
     <enum name="right" value="1"/>
   </attr>
@@ -45,7 +45,7 @@
     <attr format="color" name="pureTextColor"/>
     <attr format="dimension" name="pureTextSize"/>
     <attr name="viewDivide"/>
-    <attr name="textDirection"/>
+    <attr name="pureDirection"/>
     <attr name="dividerColor"/>
   </declare-styleable>
 

@@ -9,7 +9,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
-
+import android.view.View;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -710,5 +710,22 @@ public final class AppUtils {
             }
         }
         return true;
+    }
+
+    /**
+     * 得到计算不显示的控件高度
+     * @param view
+     * @return
+     */
+    public int[] getMeasureViewSize(View view) {
+        int size[] = new int[2];
+        int width = View.MeasureSpec.makeMeasureSpec(0,
+            View.MeasureSpec.UNSPECIFIED);
+        int height = View.MeasureSpec.makeMeasureSpec(0,
+            View.MeasureSpec.UNSPECIFIED);
+        view.measure(width, height);
+        size[0] = view.getMeasuredWidth();
+        size[1] = view.getMeasuredHeight();
+        return size;
     }
 }

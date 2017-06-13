@@ -99,4 +99,19 @@ public class StringUtils {
     }
     return array[index];
   }
+
+  /**
+   * 验证坐标在数组的位置
+   *
+   * @param array 数组
+   * @param index 位置
+   * @param failIndex 如果超出了则取的位置
+   */
+  public static int getArrayIndex(int[] array, int index, int failIndex) {
+    int length = array.length;
+    if (index > length - 1 || index < 0) {
+      index = failIndex;
+    }
+    return array[index];
+  }
 }

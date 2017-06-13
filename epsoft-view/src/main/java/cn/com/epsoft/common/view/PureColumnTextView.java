@@ -46,9 +46,9 @@ public class PureColumnTextView extends AppCompatTextView {
    */
   private int viewDivide;
   /**
-   * text的位置
+   * pure的位置
    */
-  int textDirection;
+  int pureDirection;
   /**
    * 是否提示
    */
@@ -74,7 +74,7 @@ public class PureColumnTextView extends AppCompatTextView {
     this.pureTextSize = ta.getDimension(R.styleable.PureColumnTextView_pureTextSize,
         DensityUtil.dip2px(getContext(), 13));
     this.viewDivide = ta.getInt(R.styleable.PureColumnTextView_viewDivide, -1);
-    this.textDirection = ta.getInt(R.styleable.PureColumnTextView_textDirection, 0);
+    this.pureDirection = ta.getInt(R.styleable.PureColumnTextView_pureDirection, 0);
     ta.recycle();
     pureTextPaint = new Paint();
     pureTextPaint.setAntiAlias(true);
@@ -88,7 +88,7 @@ public class PureColumnTextView extends AppCompatTextView {
     lineDrawablePaint.setStyle(Paint.Style.FILL);
     lineDrawablePaint.setStrokeWidth(LINE_HEIGHT);
     originalPaddingLeft = getPaddingLeft();
-    if (textDirection == 1) {
+    if (pureDirection == 1) {
       calculationTextRightX();
     }
   }
@@ -126,7 +126,7 @@ public class PureColumnTextView extends AppCompatTextView {
   protected void onDraw(Canvas canvas) {
     if (!TextUtils.isEmpty(pureText)) {
       //判断布局位置
-      if (textDirection == 0) {
+      if (pureDirection == 0) {
         calculationTextLeftX();
       } else {
         //这段话可以达成让右边主文字换行
@@ -174,7 +174,7 @@ public class PureColumnTextView extends AppCompatTextView {
   public void setPureText(String txt) {
     this.pureText = txt;
     isHint = false;
-    if (textDirection == 1) {
+    if (pureDirection == 1) {
       calculationTextRightX();
     }
     invalidate();
@@ -183,7 +183,7 @@ public class PureColumnTextView extends AppCompatTextView {
   public void setPureTextColor(@ColorRes int color) {
     this.pureTextColor = getResources().getColor(color);
     isHint = false;
-    if (textDirection == 1) {
+    if (pureDirection == 1) {
       calculationTextRightX();
     }
     invalidate();
@@ -192,7 +192,7 @@ public class PureColumnTextView extends AppCompatTextView {
   public void setPureText(@StringRes int tex) {
     this.pureText = getResources().getString(tex);
     isHint = false;
-    if (textDirection == 1) {
+    if (pureDirection == 1) {
       calculationTextRightX();
     }
     invalidate();
