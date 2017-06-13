@@ -717,7 +717,7 @@ public final class AppUtils {
      * @param view
      * @return
      */
-    public int[] getMeasureViewSize(View view) {
+    public static int[] getMeasureViewSize(View view) {
         int size[] = new int[2];
         int width = View.MeasureSpec.makeMeasureSpec(0,
             View.MeasureSpec.UNSPECIFIED);
