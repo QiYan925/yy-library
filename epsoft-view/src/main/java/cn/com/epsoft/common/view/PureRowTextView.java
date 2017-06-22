@@ -77,7 +77,7 @@ public class PureRowTextView extends AppCompatTextView {
     this.pureTextSize = ta.getDimension(R.styleable.PureRowTextView_pureTextSize,
         DensityUtil.dip2px(getContext(), 13));
     this.viewDivide = ta.getInt(R.styleable.PureRowTextView_viewDivide, -1);
-    this.pureDirection = ta.getInt(R.styleable.PureRowTextView_pureDirection, 0);
+    this.pureDirection = ta.getInt(R.styleable.PureRowTextView_pureDirection, PURE_DIRECTION_RIGHT);
     ta.recycle();
     pureTextPaint = new Paint();
     pureTextPaint.setAntiAlias(true);
