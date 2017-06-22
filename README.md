@@ -11,5 +11,5 @@
 			}
 ### Step 2. Add the dependency
 		dependencies {
-			        compile 'com.github.yqiy:yy-library:v0.1.0'
+			        compile 'com.github.yqiy:yy-library:v0.1.8'
 			}
