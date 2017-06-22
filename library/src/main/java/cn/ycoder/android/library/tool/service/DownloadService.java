@@ -73,7 +73,7 @@ public class DownloadService extends Service {
                 case DownloadManager.STATUS_RUNNING:
                     break;*/
                 case DownloadManager.STATUS_SUCCESSFUL:
-                    AppUtils.installApp(this, filePath);
+                    AppUtils.installApp(filePath);
                     break;
             }
         }
