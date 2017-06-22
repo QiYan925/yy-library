@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import cn.ycoder.android.demo.R;
+import cn.ycoder.android.demo.presenter.TestPresenter;
 import cn.ycoder.android.demo.store.AppStore;
 import cn.ycoder.android.library.BaseApplication;
 import cn.ycoder.android.library.ToolbarFragment;
@@ -15,21 +16,21 @@ import cn.ycoder.android.library.widget.MultipleStatusView;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.google.gson.Gson;
 
 /**
  * @author 启研
  * @created at 2017/4/20 11:29
  */
 @Route(path = "/main/test")
-public class TestFragment extends ToolbarFragment {
+public class TestFragment extends ToolbarFragment implements TestPresenter.View {
+
   MultipleStatusView multipleStatusView;
   TextView text;
   @Autowired
   String msg;
   @Autowired
   int tab;
-
+  TestPresenter presenter = new TestPresenter(this);
 
   @Nullable
   @Override
@@ -38,14 +39,28 @@ public class TestFragment extends ToolbarFragment {
     View view = inflater.inflate(R.layout.frag_test, container, false);
     super.initToolbar(view, "测试界面");
     text = (TextView) view.findViewById(R.id.text);
-    multipleStatusView= (MultipleStatusView) view.findViewById(R.id.multipleStatusView);
+    multipleStatusView = (MultipleStatusView) view.findViewById(R.id.multipleStatusView);
     multipleStatusView.showLoading();
     ARouter.getInstance().inject(this);
     text.setText("显示的是：" + msg);
-    Gson gson=new Gson();
     ToastUtils.showLong(BaseApplication.getInstance().getTag(AppStore.KEY_TAG1).toString()
         + BaseApplication.getInstance().getTag(AppStore.KEY_TAG2).toString());
+    presenter.load();
     return view;
+  }
+
+  @Override
+  public void onLoadResult() {
+    ToastUtils.showLong("加载成功");
+    multipleStatusView.showContent();
+  }
+
+  @Override
+  public void showProgress(boolean show) {
+    //使用MultipleStatusView加载后就不调用ProgressDialog了
+    if (show && multipleStatusView.getViewStatus() != MultipleStatusView.STATUS_LOADING) {
+      super.showProgress(show);
+    }
   }
 
   @Override

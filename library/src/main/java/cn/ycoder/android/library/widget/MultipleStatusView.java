@@ -2,14 +2,16 @@ package cn.ycoder.android.library.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import cn.ycoder.android.library.R;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 
 /**
@@ -25,6 +27,13 @@ public class MultipleStatusView extends RelativeLayout {
   public static final int STATUS_EMPTY = 0x02;
   public static final int STATUS_ERROR = 0x03;
   public static final int STATUS_NO_NETWORK = 0x04;
+
+  @IntDef({STATUS_CONTENT, STATUS_LOADING, STATUS_EMPTY, STATUS_ERROR,
+      STATUS_NO_NETWORK})
+  @Retention(RetentionPolicy.SOURCE)
+  public @interface ViewStatus {
+
+  }
 
   private static final int NULL_RESOURCE_ID = -1;
 
@@ -42,6 +51,7 @@ public class MultipleStatusView extends RelativeLayout {
   private int mLoadingViewResId;
   private int mNoNetworkViewResId;
   private int mContentViewResId;
+  @ViewStatus
   private int mViewStatus;
 
   private LayoutInflater mInflater;
@@ -87,7 +97,7 @@ public class MultipleStatusView extends RelativeLayout {
   /**
    * 获取当前状态
    */
-  @SuppressWarnings("unused")
+  @ViewStatus
   public int getViewStatus() {
     return mViewStatus;
   }
@@ -181,7 +191,7 @@ public class MultipleStatusView extends RelativeLayout {
     showViewByStatus(mViewStatus);
   }
 
-  private void showViewByStatus(int viewStatus) {
+  private void showViewByStatus(@ViewStatus int viewStatus) {
     if (null != mLoadingView) {
       mLoadingView.setVisibility(viewStatus == STATUS_LOADING ? View.VISIBLE : View.GONE);
     }

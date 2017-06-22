@@ -14,10 +14,15 @@
   <cn.ycoder.android.library.widget.MultipleStatusView
     android:id="@+id/multipleStatusView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">
     <TextView
+      android:id="@id/contentView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="111"/>
+      android:gravity="center"
+      android:textSize="@dimen/h1"
+      android:textColor="@color/red"
+      android:text="这是加载后显示的内容"/>
   </cn.ycoder.android.library.widget.MultipleStatusView>
 </LinearLayout>
