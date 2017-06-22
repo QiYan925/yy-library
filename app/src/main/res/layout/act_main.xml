@@ -47,7 +47,7 @@
       app:pureText="v1.0"
       app:pureDirection="right"
       android:padding="@dimen/bothSideSpacing"
-      app:viewDivide="partBottom"
+      app:viewDivide="bothPartBottom"
       app:pureTextColor="@color/ignore_title"
       app:pureTextSize="@dimen/h5"
       app:dividerColor="@color/red" />
