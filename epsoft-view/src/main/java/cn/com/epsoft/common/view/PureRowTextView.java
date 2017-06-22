@@ -19,7 +19,10 @@ import android.util.AttributeSet;
  * @author 启研
  * @created at 2017/3/18 15:10
  */
-public class PureColumnTextView extends AppCompatTextView {
+public class PureRowTextView extends AppCompatTextView {
+
+  private final static int PURE_DIRECTION_LEFT = 0;
+  private final static int PURE_DIRECTION_RIGHT = 1;
 
   /**
    * 线高
@@ -59,22 +62,22 @@ public class PureColumnTextView extends AppCompatTextView {
   int textX;
   int originalPaddingLeft;
 
-  public PureColumnTextView(Context context) {
+  public PureRowTextView(Context context) {
     this(context, null);
   }
 
-  public PureColumnTextView(Context context, @Nullable AttributeSet attrs) {
+  public PureRowTextView(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
-    TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.PureColumnTextView);
-    this.pureText = ta.getString(R.styleable.PureColumnTextView_pureText);
+    TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.PureRowTextView);
+    this.pureText = ta.getString(R.styleable.PureRowTextView_pureText);
     this.pureTextColor = ta
-        .getColor(R.styleable.PureColumnTextView_pureTextColor, Color.parseColor("#999999"));
+        .getColor(R.styleable.PureRowTextView_pureTextColor, Color.parseColor("#999999"));
     this.dividerColor = ta
-        .getColor(R.styleable.PureColumnTextView_dividerColor, Color.parseColor("#999999"));
-    this.pureTextSize = ta.getDimension(R.styleable.PureColumnTextView_pureTextSize,
+        .getColor(R.styleable.PureRowTextView_dividerColor, Color.parseColor("#999999"));
+    this.pureTextSize = ta.getDimension(R.styleable.PureRowTextView_pureTextSize,
         DensityUtil.dip2px(getContext(), 13));
-    this.viewDivide = ta.getInt(R.styleable.PureColumnTextView_viewDivide, -1);
-    this.pureDirection = ta.getInt(R.styleable.PureColumnTextView_pureDirection, 0);
+    this.viewDivide = ta.getInt(R.styleable.PureRowTextView_viewDivide, -1);
+    this.pureDirection = ta.getInt(R.styleable.PureRowTextView_pureDirection, 0);
     ta.recycle();
     pureTextPaint = new Paint();
     pureTextPaint.setAntiAlias(true);
@@ -88,7 +91,7 @@ public class PureColumnTextView extends AppCompatTextView {
     lineDrawablePaint.setStyle(Paint.Style.FILL);
     lineDrawablePaint.setStrokeWidth(LINE_HEIGHT);
     originalPaddingLeft = getPaddingLeft();
-    if (pureDirection == 1) {
+    if (pureDirection == PURE_DIRECTION_LEFT) {
       calculationTextRightX();
     }
   }
@@ -126,7 +129,7 @@ public class PureColumnTextView extends AppCompatTextView {
   protected void onDraw(Canvas canvas) {
     if (!TextUtils.isEmpty(pureText)) {
       //判断布局位置
-      if (pureDirection == 0) {
+      if (pureDirection == PURE_DIRECTION_RIGHT) {
         calculationTextLeftX();
       } else {
         //这段话可以达成让右边主文字换行
@@ -174,7 +177,7 @@ public class PureColumnTextView extends AppCompatTextView {
   public void setPureText(String txt) {
     this.pureText = txt;
     isHint = false;
-    if (pureDirection == 1) {
+    if (pureDirection == PURE_DIRECTION_LEFT) {
       calculationTextRightX();
     }
     invalidate();
@@ -183,7 +186,7 @@ public class PureColumnTextView extends AppCompatTextView {
   public void setPureTextColor(@ColorRes int color) {
     this.pureTextColor = getResources().getColor(color);
     isHint = false;
-    if (pureDirection == 1) {
+    if (pureDirection == PURE_DIRECTION_LEFT) {
       calculationTextRightX();
     }
     invalidate();
@@ -192,7 +195,7 @@ public class PureColumnTextView extends AppCompatTextView {
   public void setPureText(@StringRes int tex) {
     this.pureText = getResources().getString(tex);
     isHint = false;
-    if (pureDirection == 1) {
+    if (pureDirection == PURE_DIRECTION_LEFT) {
       calculationTextRightX();
     }
     invalidate();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical">
@@ -29,4 +30,41 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="去百度"/>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/commonSpacing12"
+    android:orientation="vertical">
+    <cn.com.epsoft.common.view.PureRowTextView
+      android:layout_marginTop="@dimen/commonSpacing6"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="关于我们"
+      android:textColor="@color/title"
+      android:background="@color/white"
+      android:textSize="@dimen/h4"
+      app:pureText="v1.0"
+      app:pureDirection="right"
+      android:padding="@dimen/bothSideSpacing"
+      app:viewDivide="partBottom"
+      app:pureTextColor="@color/ignore_title"
+      app:pureTextSize="@dimen/h5"
+      app:dividerColor="@color/red" />
+    <cn.com.epsoft.common.view.PureRowTextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="@dimen/bothSideSpacing"
+      android:background="@color/white"
+      android:text="浙江省杭州市西园八路与西园9路交叉口银江大厦30132"
+      android:textColor="@color/ignore_title"
+      android:textSize="@dimen/h5"
+      app:pureText="家庭地址"
+      app:pureDirection="left"
+      app:viewDivide="allBottom"
+      app:pureTextColor="@color/title"
+      app:pureTextSize="@dimen/h4"
+      app:dividerColor="@color/black" />
+    </LinearLayout>
+
 </LinearLayout>

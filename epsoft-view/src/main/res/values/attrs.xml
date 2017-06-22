@@ -40,7 +40,7 @@
     <enum name="top" value="1"/>
   </attr>
 
-  <declare-styleable name="PureColumnTextView">
+  <declare-styleable name="PureRowTextView">
     <attr format="string" name="pureText"/>
     <attr format="color" name="pureTextColor"/>
     <attr format="dimension" name="pureTextSize"/>
