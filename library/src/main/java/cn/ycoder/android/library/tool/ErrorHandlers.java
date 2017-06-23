@@ -1,15 +1,15 @@
 package cn.ycoder.android.library.tool;
 
 import android.content.Context;
+import android.os.Looper;
+import android.text.TextUtils;
 import android.util.Log;
-
-import java.io.BufferedReader;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
-
 import io.reactivex.annotations.NonNull;
 import io.reactivex.exceptions.OnErrorNotImplementedException;
 import io.reactivex.functions.Consumer;
+import java.io.BufferedReader;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import retrofit2.HttpException;
 
 /**
@@ -34,12 +34,13 @@ public class ErrorHandlers {
     } else if (isNetWorkError(throwable)) {
       errorMessage = "网络未连接或不可用，请检查后重试";
     }
-    if (errorMessage != null) {
-    } else {
-      Log.e(TAG, "[301]", throwable);
+    if (TextUtils.isEmpty(errorMessage)) {
       errorMessage = errorMessage(throwable);
     }
-    ToastUtils.showLong(errorMessage);
+    LogUtils.e(throwable.getMessage(), throwable);
+    if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
+      ToastUtils.showLong(errorMessage);
+    }
     return errorMessage;
   }
 
