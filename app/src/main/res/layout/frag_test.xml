@@ -21,8 +21,8 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center"
-      android:textSize="@dimen/h1"
+      android:text="这是加载后显示的内容"
       android:textColor="@color/red"
-      android:text="这是加载后显示的内容"/>
+      android:textSize="@dimen/h1"/>
   </cn.ycoder.android.library.widget.MultipleStatusView>
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import butterknife.BindView;
 import cn.ycoder.android.demo.R;
 import cn.ycoder.android.demo.presenter.TestPresenter;
 import cn.ycoder.android.demo.store.AppStore;
@@ -24,7 +25,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 @Route(path = "/main/test")
 public class TestFragment extends ToolbarFragment implements TestPresenter.View {
 
+  @BindView(R.id.multipleStatusView)
   MultipleStatusView multipleStatusView;
+  @BindView(R.id.text)
   TextView text;
   @Autowired
   String msg;
@@ -38,8 +41,7 @@ public class TestFragment extends ToolbarFragment implements TestPresenter.View 
       @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.frag_test, container, false);
     super.initToolbar(view, "测试界面");
-    text = (TextView) view.findViewById(R.id.text);
-    multipleStatusView = (MultipleStatusView) view.findViewById(R.id.multipleStatusView);
+    setBindView(view);
     multipleStatusView.showLoading();
     ARouter.getInstance().inject(this);
     text.setText("显示的是：" + msg);

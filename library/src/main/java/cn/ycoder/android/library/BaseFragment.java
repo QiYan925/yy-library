@@ -5,7 +5,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.StringRes;
-
+import android.view.View;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 /**
@@ -13,6 +15,25 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
  * @created at 2017/3/9.
  */
 public abstract class BaseFragment extends RxFragment {
+
+  Unbinder unbinder;
+
+  /**
+   * 绑定视图
+   *
+   * @param view 视图
+   */
+  protected final void setBindView(View view) {
+    this.unbinder = ButterKnife.bind(this, view);
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    if (this.unbinder != null) {
+      this.unbinder.unbind();
+    }
+  }
 
   public boolean onBackPressed() {
     return false;
@@ -155,4 +176,5 @@ public abstract class BaseFragment extends RxFragment {
    */
   protected void lazyLoad() {
   }
+
 }
