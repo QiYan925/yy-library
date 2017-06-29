@@ -75,40 +75,10 @@ public abstract class BaseApplication extends Application {
     int myPid = android.os.Process.myPid();
     for (ActivityManager.RunningAppProcessInfo info : processInfoList) {
       if (info.pid == myPid && mainProcessName.equals(info.processName)) {
-        packageName = mainProcessName;
         return true;
       }
     }
     return false;
-  }
-
-  protected String packageName;
-
-  /**
-   * 获取app的包
-   */
-  public String getAppPackage() {
-    return packageName;
-  }
-
-
-  /**
-   * 历史Postcard
-   */
-  protected Postcard historyPostcard;
-
-  /**
-   * 获得历史Postcard
-   */
-  public Postcard getHistoryPostcard() {
-    return historyPostcard;
-  }
-
-  /**
-   * 存放历史Postcard，可在路由拦截器中设值
-   */
-  public void setHistoryPostcard(Postcard historyPostcard) {
-    this.historyPostcard = historyPostcard;
   }
 
   /**
