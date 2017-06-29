@@ -3,18 +3,14 @@ package cn.ycoder.android.library;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
-
-import cn.ycoder.android.library.store.AppTagStore;
-import com.alibaba.android.arouter.facade.Postcard;
-import com.alibaba.android.arouter.launcher.ARouter;
-
-import java.util.List;
-
 import cn.ycoder.android.library.route.UriReplaceService;
+import cn.ycoder.android.library.store.AppTagStore;
 import cn.ycoder.android.library.tool.ErrorHandlers;
 import cn.ycoder.android.library.tool.LogUtils;
 import cn.ycoder.android.library.tool.Utils;
+import com.alibaba.android.arouter.launcher.ARouter;
 import io.reactivex.plugins.RxJavaPlugins;
+import java.util.List;
 
 /**
  * @author 启研
