@@ -7,11 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
-
-import com.alibaba.android.arouter.facade.Postcard;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-
 import cn.ycoder.android.library.tool.ActivitiesManager;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 /**
  * @author 启研
@@ -79,20 +76,6 @@ public class BaseActivity extends RxAppCompatActivity {
   protected void onDestroy() {
     super.onDestroy();
     showProgress(false);
-    if (destroyClearPostcard() && cn.ycoder.android.library.BaseApplication.getInstance() != null) {
-      Postcard postcard = cn.ycoder.android.library.BaseApplication.getInstance().getHistoryPostcard();
-      if (postcard != null) {
-        //清理意图
-        cn.ycoder.android.library.BaseApplication.getInstance().setHistoryPostcard(null);
-      }
-    }
-  }
-
-  /**
-   * 销毁的时候清理意图
-   */
-  protected boolean destroyClearPostcard() {
-    return true;
   }
 
   @Override

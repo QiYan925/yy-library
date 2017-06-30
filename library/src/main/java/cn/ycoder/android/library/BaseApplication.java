@@ -5,11 +5,9 @@ import android.app.Application;
 import android.content.Context;
 import cn.ycoder.android.library.route.UriReplaceService;
 import cn.ycoder.android.library.store.AppTagStore;
-import cn.ycoder.android.library.tool.ErrorHandlers;
 import cn.ycoder.android.library.tool.LogUtils;
 import cn.ycoder.android.library.tool.Utils;
 import com.alibaba.android.arouter.launcher.ARouter;
-import io.reactivex.plugins.RxJavaPlugins;
 import java.util.List;
 
 /**
@@ -42,7 +40,7 @@ public abstract class BaseApplication extends Application {
       app = this;
       //工具使用App
       Utils.init(app, app.getPackageName());
-      RxJavaPlugins.setErrorHandler(ErrorHandlers.displayErrorConsumer(app));
+//      RxJavaPlugins.setErrorHandler(ErrorHandlers.displayErrorConsumer(app));
       mAppTag = initAppTag(this);
       onlyInit();
       //开启日志
@@ -55,7 +53,6 @@ public abstract class BaseApplication extends Application {
       ARouter.init(app);
     }
   }
-
 
   /**
    * 仅初始化一次
