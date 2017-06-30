@@ -40,8 +40,7 @@ public class TestFragment extends ToolbarFragment implements TestPresenter.View 
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.frag_test, container, false);
-    super.initToolbar(view, "测试界面");
-    setBindView(view);
+    super.bindToolbarView(view, "测试界面");
     multipleStatusView.showLoading();
     ARouter.getInstance().inject(this);
     text.setText("显示的是：" + msg);

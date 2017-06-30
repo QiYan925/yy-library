@@ -80,6 +80,7 @@ public class PureRowTextView extends AppCompatTextView {
         .getColor(R.styleable.PureRowTextView_dividerColor, Color.parseColor("#999999"));
     this.pureTextSize = ta.getDimension(R.styleable.PureRowTextView_pureTextSize,
         DensityUtil.dip2px(getContext(), 13));
+    //noinspection WrongConstant
     this.viewDivide = ta.getInt(R.styleable.PureRowTextView_viewDivide, VIEWDIVIDE_NONE);
     this.pureDirection = ta.getInt(R.styleable.PureRowTextView_pureDirection, PURE_DIRECTION_RIGHT);
     ta.recycle();
@@ -94,6 +95,11 @@ public class PureRowTextView extends AppCompatTextView {
     lineDrawablePaint.setColor(dividerColor);
     lineDrawablePaint.setStyle(Paint.Style.FILL);
     lineDrawablePaint.setStrokeWidth(LINE_HEIGHT);
+  }
+
+  @Override
+  protected void onAttachedToWindow () {
+    super.onAttachedToWindow ();
     originalPaddingLeft = getPaddingLeft();
     if (pureDirection == PURE_DIRECTION_LEFT) {
       calculationTextRightX();
@@ -105,10 +111,10 @@ public class PureRowTextView extends AppCompatTextView {
       overLength = true;
       Float textLength = pureTextPaint.measureText(pureText);
       textX = textLength.intValue() / 2 + getPaddingRight() + getCompoundDrawablePadding();
-      if (getCompoundDrawables() != null && getCompoundDrawables().length > 0
-          && getCompoundDrawables()[0] != null) {
-        textX -= getCompoundDrawables()[0].getIntrinsicWidth();
-      }
+//      if (getCompoundDrawables() != null && getCompoundDrawables().length > 0
+//          && getCompoundDrawables()[0] != null) {
+//        textX -= getCompoundDrawables()[0].getIntrinsicWidth();
+//      }
       setPadding(getPaddingLeft() + textX + textLength.intValue() / 2, getPaddingTop(),
           getPaddingRight(), getPaddingBottom());
     }
@@ -157,10 +163,10 @@ public class PureRowTextView extends AppCompatTextView {
       }
       if (viewDivide == VIEWDIVIDE_PARTBOTTOM || viewDivide == VIEWDIVIDE_BOTHPARTBOTTOM || viewDivide == VIEWDIVIDE_PARTTOP) {
         lineX += originalPaddingLeft;
-        if (getCompoundDrawables() != null && getCompoundDrawables()[0] != null) {
-          lineX += getCompoundDrawablePadding();
-          lineX += getCompoundDrawables()[0].getIntrinsicWidth();
-        }
+//        if (getCompoundDrawables() != null && getCompoundDrawables()[0] != null) {
+//          lineX += getCompoundDrawablePadding();
+//          lineX += getCompoundDrawables()[0].getIntrinsicWidth();
+//        }
       }
       if (viewDivide != VIEWDIVIDE_ALLTOP && viewDivide != VIEWDIVIDE_PARTTOP) {
         canvas.drawLine(lineX, getHeight() - LINE_HEIGHT, getWidth(), getHeight() - LINE_HEIGHT,

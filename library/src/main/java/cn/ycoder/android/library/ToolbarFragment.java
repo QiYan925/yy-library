@@ -16,7 +16,7 @@ public abstract class ToolbarFragment extends BaseFragment {
 
   protected Toolbar toolbar;
 
-  public void initToolbar(View view, int titleRes) {
+  public void bindToolbarView(View view, int titleRes) {
     String title = null;
     if (getArguments() != null) {
       title = getArguments().getString("title");
@@ -24,10 +24,11 @@ public abstract class ToolbarFragment extends BaseFragment {
     if (titleRes != -1) {
       title = getString(titleRes);
     }
-    this.initToolbar(view, title);
+    this.bindToolbarView(view, title);
+    super.bindView(view);
   }
 
-  public void initToolbar(View view, String titleRes) {
+  public void bindToolbarView(View view, String titleRes) {
     toolbar = (Toolbar) view.findViewById(R.id.toolbar);
     if (toolbar != null) {
       if (titleRes != null) {
