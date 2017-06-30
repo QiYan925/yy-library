@@ -5,6 +5,8 @@ import cn.ycoder.android.demo.store.AppStore;
 import cn.ycoder.android.library.BaseApplication;
 import cn.ycoder.android.library.route.UriReplaceService;
 import cn.ycoder.android.library.store.AppTagStore;
+import cn.ycoder.android.library.tool.ErrorHandlers;
+import io.reactivex.plugins.RxJavaPlugins;
 
 /**
  * @author 启研
@@ -18,7 +20,8 @@ public class App extends BaseApplication {
    */
   @Override
   public void onlyInit() {
-
+    //rx的异常捕获
+    RxJavaPlugins.setErrorHandler(ErrorHandlers.displayErrorConsumer(this));
   }
 
   @Override
