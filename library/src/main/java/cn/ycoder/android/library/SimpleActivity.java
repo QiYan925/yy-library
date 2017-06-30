@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 
+import cn.ycoder.android.library.tool.LogUtils;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -25,6 +26,8 @@ import cn.ycoder.android.library.tool.StringUtils;
  */
 @Route(path = RouteUtil.URI_SIMPLE)
 public class SimpleActivity extends BaseActivity {
+
+  public static final String FRAGMENT_NOT_FOUND = "/simple/notFound";
 
   private static final String TAG = "SimpleActivity";
   @Autowired(name = RouteUtil.Params.FRAGMENT_URI)
@@ -71,6 +74,9 @@ public class SimpleActivity extends BaseActivity {
           }
         }
         fragment.setArguments(args);
+      } else {
+        LogUtils.e("you fragmentUri is null [" + fragmentUri + "]");
+        fragment = (Fragment) ARouter.getInstance().build(FRAGMENT_NOT_FOUND).navigation();
       }
       FragmentTransaction trans = getSupportFragmentManager()
           .beginTransaction();
