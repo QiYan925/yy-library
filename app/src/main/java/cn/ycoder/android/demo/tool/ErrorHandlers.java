@@ -1,9 +1,11 @@
-package cn.ycoder.android.library.tool;
+package cn.ycoder.android.demo.tool;
 
 import android.content.Context;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
+import cn.ycoder.android.library.tool.LogUtils;
+import cn.ycoder.android.library.tool.ToastUtils;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.exceptions.OnErrorNotImplementedException;
 import io.reactivex.functions.Consumer;
