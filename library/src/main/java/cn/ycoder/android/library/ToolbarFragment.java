@@ -25,7 +25,6 @@ public abstract class ToolbarFragment extends BaseFragment {
       title = getString(titleRes);
     }
     this.bindToolbarView(view, title);
-    super.bindView(view);
   }
 
   public void bindToolbarView(View view, String titleRes) {
@@ -52,13 +51,14 @@ public abstract class ToolbarFragment extends BaseFragment {
     } else {
       throw new NullPointerException("if not toolbar,please used BaseFragment");
     }
+    super.bindView(view);
   }
 
   @Override
   public void onResume() {
     super.onResume();
     if (toolbar == null) {
-      LogUtils.e("please call (super.initToolbar) method at onCreateView!");
+      LogUtils.e("please call (super.bindToolbarView) method at onCreateView!");
     }
   }
 
