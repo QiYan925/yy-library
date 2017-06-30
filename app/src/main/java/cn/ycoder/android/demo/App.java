@@ -2,10 +2,10 @@ package cn.ycoder.android.demo;
 
 import android.content.Context;
 import cn.ycoder.android.demo.store.AppStore;
+import cn.ycoder.android.demo.tool.ErrorHandlers;
 import cn.ycoder.android.library.BaseApplication;
 import cn.ycoder.android.library.route.UriReplaceService;
 import cn.ycoder.android.library.store.AppTagStore;
-import cn.ycoder.android.library.tool.ErrorHandlers;
 import io.reactivex.plugins.RxJavaPlugins;
 
 /**
