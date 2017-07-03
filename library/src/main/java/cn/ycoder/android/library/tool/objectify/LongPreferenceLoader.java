@@ -12,7 +12,7 @@ public class LongPreferenceLoader extends PreferenceLoader {
         super(context, key);
     }
 
-    public long load(long defaultValue) throws NoSuchPreferenceFoundException {
+    public long load(long defaultValue) {
         SharedPreferences appSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         long value = appSharedPrefs.getLong(getKey(), defaultValue);
         return value;

@@ -13,7 +13,7 @@ public class BooleanPreferenceLoader extends PreferenceLoader {
         super(context, key);
     }
 
-    public boolean load(boolean defaultValue) throws NoSuchPreferenceFoundException {
+    public boolean load(boolean defaultValue) {
         SharedPreferences appSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         boolean value = appSharedPrefs.getBoolean(getKey(), defaultValue);
         return value;
