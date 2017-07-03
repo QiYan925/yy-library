@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
   <attr format="dimension" name="toolbarTitleSize" tools:ignore="all"/>
+  <attr format="reference" name="indeterminateProgressBar" tools:ignore="all"/>
 
   <declare-styleable name="NumberProgressBar" tools:ignore="all">
     <attr format="integer" name="progress"/>

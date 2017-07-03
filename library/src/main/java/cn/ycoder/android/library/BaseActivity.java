@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v4.content.ContextCompat;
 import cn.ycoder.android.library.tool.ActivitiesManager;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
@@ -23,6 +24,7 @@ public class BaseActivity extends RxAppCompatActivity {
     super.onCreate(savedInstanceState);
     ActivitiesManager.getInstance().pushActivity(this);
     dialog = new ProgressDialog(this);
+    dialog.setIndeterminateDrawable(ContextCompat.getDrawable(getBaseContext(),R.drawable.progress_color));
     dialog.setIndeterminate(true);
     dialog.setMessage("请稍候...");
     dialog.setCanceledOnTouchOutside(false);

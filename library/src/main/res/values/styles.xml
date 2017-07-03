@@ -5,6 +5,7 @@
     <item name="toolbarTitleSize">17sp</item>
     <item name="navigationIcon">@android:drawable/ic_delete</item>
     <item name="titleTextColor">@android:color/white</item>
+    <item name="indeterminateProgressBar">@drawable/progress_color</item>
   </style>
 
 
