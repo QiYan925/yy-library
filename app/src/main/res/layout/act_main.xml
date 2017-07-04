@@ -44,7 +44,7 @@
       android:textColor="@color/title"
       android:background="@color/white"
       android:textSize="@dimen/h4"
-      app:pureText="v1.0"
+      app:pureText="地址所在"
       app:pureDirection="right"
       android:padding="@dimen/bothSideSpacing"
       app:viewDivide="bothPartBottom"
