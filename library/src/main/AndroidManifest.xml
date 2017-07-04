@@ -4,10 +4,11 @@
   <application
     android:allowBackup="true"
     android:supportsRtl="true">
+    <!-- 交由子App实现
     <meta-data
       android:name="DESIGN_WIDTH"
       android:value="750"/>
-
+    -->
     <activity
       android:name=".SimpleActivity"
       android:screenOrientation="portrait"/>
