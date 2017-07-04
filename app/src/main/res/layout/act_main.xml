@@ -40,7 +40,7 @@
       android:layout_marginTop="@dimen/commonSpacing6"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="关于我们"
+      android:text="浙江省杭州市西园八路与西园9路交叉口银江大厦30132"
       android:textColor="@color/title"
       android:background="@color/white"
       android:textSize="@dimen/h4"
