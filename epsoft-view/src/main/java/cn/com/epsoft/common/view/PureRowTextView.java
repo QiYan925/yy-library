@@ -64,7 +64,7 @@ public class PureRowTextView extends AppCompatTextView {
   Paint pureTextPaint;
   Paint lineDrawablePaint;
   int textX;
-  int originalPaddingLeft;
+  int originalPaddingLeft,originalPaddingRight;
 
   public PureRowTextView(Context context) {
     this(context, null);
@@ -97,71 +97,72 @@ public class PureRowTextView extends AppCompatTextView {
     lineDrawablePaint.setStrokeWidth(LINE_HEIGHT);
   }
 
+  boolean frist = true;
+
   @Override
-  protected void onAttachedToWindow () {
-    super.onAttachedToWindow ();
+  protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
     originalPaddingLeft = getPaddingLeft();
+    originalPaddingRight=getPaddingRight();
     if (pureDirection == PURE_DIRECTION_LEFT) {
-      calculationTextRightX();
+      calculationTextXByPureLeft();
     }
   }
 
-  private void calculationTextRightX() {
+  @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    super.onSizeChanged(w, h, oldw, oldh);
+    if (pureDirection == PURE_DIRECTION_RIGHT) {
+      calculationTextXByPureRight();
+    }
+  }
+
+  private void calculationTextXByPureLeft() {
     if (!TextUtils.isEmpty(pureText)) {
-      overLength = true;
       Float textLength = pureTextPaint.measureText(pureText);
-      textX = textLength.intValue() / 2 + getPaddingRight() + getCompoundDrawablePadding();
+      textX = textLength.intValue() / 2 + originalPaddingRight + getCompoundDrawablePadding();
 //      if (getCompoundDrawables() != null && getCompoundDrawables().length > 0
 //          && getCompoundDrawables()[0] != null) {
 //        textX -= getCompoundDrawables()[0].getIntrinsicWidth();
 //      }
-      setPadding(getPaddingLeft() + textX + textLength.intValue() / 2, getPaddingTop(),
-          getPaddingRight(), getPaddingBottom());
+      if (frist) {
+        frist = false;
+        setPadding(getPaddingLeft() + textX + textLength.intValue() / 2, getPaddingTop(),
+            originalPaddingRight, getPaddingBottom());
+      }
     }
-
   }
 
-  private void calculationTextLeftX() {
+  private void calculationTextXByPureRight() {
     if (!TextUtils.isEmpty(pureText)) {
       Float textLength = pureTextPaint.measureText(pureText);
+      int paddingRight = originalPaddingRight * 2 + textLength.intValue();
       textX =
-          getWidth() - textLength.intValue() / 2 - getPaddingRight() - getCompoundDrawablePadding();
+          getWidth() - textLength.intValue() / 2 - originalPaddingRight - getCompoundDrawablePadding();
       if (getCompoundDrawables() != null && getCompoundDrawables().length > 2
           && getCompoundDrawables()[2] != null) {
         textX -= getCompoundDrawables()[2].getIntrinsicWidth();
+        paddingRight += getCompoundDrawables()[2].getIntrinsicWidth();
+      }
+      if (frist) {
+        frist = false;
+        setPadding(getPaddingLeft(), getPaddingTop(),
+            paddingRight, getPaddingBottom());
       }
     }
   }
 
-  boolean overLength = false;
 
   @Override
   protected void onDraw(Canvas canvas) {
-    if (!TextUtils.isEmpty(pureText)) {
-      //判断布局位置
-      if (pureDirection == PURE_DIRECTION_RIGHT) {
-        calculationTextLeftX();
-      } else {
-        //这段话可以达成让右边主文字换行
-        Float textLength = getPaint().measureText(getText().toString());
-        int maxWidth =
-            getWidth() - (getPaddingLeft() + getPaddingRight() + getCompoundDrawablePadding());
-        if (getCompoundDrawables() != null && getCompoundDrawables().length > 2
-            && getCompoundDrawables()[2] != null) {
-          maxWidth -= getCompoundDrawables()[2].getIntrinsicWidth();
-        }
-        if (textLength > maxWidth && overLength) {
-          overLength = false;
-//                    setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
-        }
-      }
-    }
     if (viewDivide != VIEWDIVIDE_NONE) {
       int lineX = 0;
-      if (viewDivide == VIEWDIVIDE_BOTHALL || viewDivide == VIEWDIVIDE_BOTHPARTBOTTOM || viewDivide == VIEWDIVIDE_ALLTOP) {
+      if (viewDivide == VIEWDIVIDE_BOTHALL || viewDivide == VIEWDIVIDE_BOTHPARTBOTTOM
+          || viewDivide == VIEWDIVIDE_ALLTOP) {
         canvas.drawLine(lineX, 0, getWidth(), 0, lineDrawablePaint);
       }
-      if (viewDivide == VIEWDIVIDE_PARTBOTTOM || viewDivide == VIEWDIVIDE_BOTHPARTBOTTOM || viewDivide == VIEWDIVIDE_PARTTOP) {
+      if (viewDivide == VIEWDIVIDE_PARTBOTTOM || viewDivide == VIEWDIVIDE_BOTHPARTBOTTOM
+          || viewDivide == VIEWDIVIDE_PARTTOP) {
         lineX += originalPaddingLeft;
 //        if (getCompoundDrawables() != null && getCompoundDrawables()[0] != null) {
 //          lineX += getCompoundDrawablePadding();
@@ -187,30 +188,30 @@ public class PureRowTextView extends AppCompatTextView {
   public void setPureText(String txt) {
     this.pureText = txt;
     isHint = false;
-    if (pureDirection == PURE_DIRECTION_LEFT) {
-      calculationTextRightX();
-    }
     invalidate();
   }
 
   public void setPureTextColor(@ColorRes int color) {
     this.pureTextColor = getResources().getColor(color);
     isHint = false;
-    if (pureDirection == PURE_DIRECTION_LEFT) {
-      calculationTextRightX();
-    }
     invalidate();
   }
 
   public void setPureText(@StringRes int tex) {
     this.pureText = getResources().getString(tex);
     isHint = false;
-    if (pureDirection == PURE_DIRECTION_LEFT) {
-      calculationTextRightX();
-    }
     invalidate();
   }
 
+  @Override
+  public void invalidate() {
+    if (pureDirection == PURE_DIRECTION_LEFT) {
+      calculationTextXByPureLeft();
+    } else {
+      calculationTextXByPureRight();
+    }
+    super.invalidate();
+  }
 
   public String getPureText() {
     if (isHint) {
@@ -231,7 +232,7 @@ public class PureRowTextView extends AppCompatTextView {
     this.viewDivide = viewDivide;
   }
 
-  @IntDef({VIEWDIVIDE_NONE,VIEWDIVIDE_ALLBOTTOM, VIEWDIVIDE_PARTBOTTOM, VIEWDIVIDE_BOTHALL,
+  @IntDef({VIEWDIVIDE_NONE, VIEWDIVIDE_ALLBOTTOM, VIEWDIVIDE_PARTBOTTOM, VIEWDIVIDE_BOTHALL,
       VIEWDIVIDE_BOTHPARTBOTTOM, VIEWDIVIDE_ALLTOP, VIEWDIVIDE_PARTTOP})
   @Retention(RetentionPolicy.SOURCE)
   public @interface ViewDivide {

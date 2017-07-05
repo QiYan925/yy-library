@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import cn.com.epsoft.common.view.PureRowTextView;
 import cn.ycoder.android.demo.presenter.NotePresenter;
 import cn.ycoder.android.demo.store.AppStore;
 import cn.ycoder.android.library.BaseApplication;
@@ -18,7 +19,7 @@ public class MainActivity extends ToolbarActivity implements NotePresenter.View 
   private Button btn;
   private TextView txt;
   private NotePresenter presenter;
-
+  private PureRowTextView tv1;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class MainActivity extends ToolbarActivity implements NotePresenter.View 
     this.presenter = new NotePresenter(this);
     this.txt = (TextView) findViewById(R.id.txt);
     this.btn = (Button) findViewById(R.id.btn);
+    this.tv1= (PureRowTextView) findViewById(R.id.tv1);
     this.btn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -46,6 +48,7 @@ public class MainActivity extends ToolbarActivity implements NotePresenter.View 
   @Override
   public void onLoadResult(final String msg) {
     txt.setText(msg);
+    tv1.setText(msg);
     this.txt.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
