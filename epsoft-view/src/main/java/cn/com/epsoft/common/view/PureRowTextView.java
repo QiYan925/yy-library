@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
@@ -63,8 +64,8 @@ public class PureRowTextView extends AppCompatTextView {
 
   Paint pureTextPaint;
   Paint lineDrawablePaint;
+  Paint mBitPaint;
   int textX;
-  int originalPaddingLeft,originalPaddingRight;
 
   public PureRowTextView(Context context) {
     this(context, null);
@@ -95,15 +96,34 @@ public class PureRowTextView extends AppCompatTextView {
     lineDrawablePaint.setColor(dividerColor);
     lineDrawablePaint.setStyle(Paint.Style.FILL);
     lineDrawablePaint.setStrokeWidth(LINE_HEIGHT);
+    mBitPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    mBitPaint.setFilterBitmap(true);
+    mBitPaint.setDither(true);
   }
 
   boolean frist = true;
+
+  int originalPaddingLeft, originalPaddingRight, drawableLeftWidth, drawableRightWidth;
+  Drawable drawableLeft, drawableRight;
 
   @Override
   protected void onAttachedToWindow() {
     super.onAttachedToWindow();
     originalPaddingLeft = getPaddingLeft();
-    originalPaddingRight=getPaddingRight();
+    originalPaddingRight = getPaddingRight();
+    if (getCompoundDrawables() != null) {
+      if (getCompoundDrawables().length > 0
+          && getCompoundDrawables()[0] != null) {
+        drawableLeft = getCompoundDrawables()[0];
+        drawableLeftWidth = drawableLeft.getIntrinsicWidth();
+      }
+      if (getCompoundDrawables().length > 2
+          && getCompoundDrawables()[2] != null) {
+        drawableRight = getCompoundDrawables()[2];
+        drawableRightWidth = drawableRight.getIntrinsicWidth();
+      }
+      setCompoundDrawables(null, null, null, null);
+    }
     if (pureDirection == PURE_DIRECTION_LEFT) {
       calculationTextXByPureLeft();
     }
@@ -120,15 +140,12 @@ public class PureRowTextView extends AppCompatTextView {
   private void calculationTextXByPureLeft() {
     if (!TextUtils.isEmpty(pureText)) {
       Float textLength = pureTextPaint.measureText(pureText);
-      textX = textLength.intValue() / 2 + originalPaddingRight + getCompoundDrawablePadding();
-//      if (getCompoundDrawables() != null && getCompoundDrawables().length > 0
-//          && getCompoundDrawables()[0] != null) {
-//        textX -= getCompoundDrawables()[0].getIntrinsicWidth();
-//      }
+      textX = textLength.intValue() / 2 + originalPaddingRight + getCompoundDrawablePadding()
+          + drawableLeftWidth;
       if (frist) {
         frist = false;
-        setPadding(getPaddingLeft() + textX + textLength.intValue() / 2, getPaddingTop(),
-            originalPaddingRight, getPaddingBottom());
+        setPadding(originalPaddingLeft + textX + textLength.intValue() / 2, getPaddingTop(),
+            originalPaddingRight+drawableRightWidth, getPaddingBottom());
       }
     }
   }
@@ -138,15 +155,12 @@ public class PureRowTextView extends AppCompatTextView {
       Float textLength = pureTextPaint.measureText(pureText);
       int paddingRight = originalPaddingRight * 2 + textLength.intValue();
       textX =
-          getWidth() - textLength.intValue() / 2 - originalPaddingRight - getCompoundDrawablePadding();
-      if (getCompoundDrawables() != null && getCompoundDrawables().length > 2
-          && getCompoundDrawables()[2] != null) {
-        textX -= getCompoundDrawables()[2].getIntrinsicWidth();
-        paddingRight += getCompoundDrawables()[2].getIntrinsicWidth();
-      }
+          getWidth() - textLength.intValue() / 2 - originalPaddingRight
+              - getCompoundDrawablePadding() - drawableRightWidth;
+      paddingRight += drawableRightWidth;
       if (frist) {
         frist = false;
-        setPadding(getPaddingLeft(), getPaddingTop(),
+        setPadding(originalPaddingLeft+drawableLeftWidth, getPaddingTop(),
             paddingRight, getPaddingBottom());
       }
     }
@@ -181,6 +195,21 @@ public class PureRowTextView extends AppCompatTextView {
       Paint.FontMetrics fm = pureTextPaint.getFontMetrics();
       int textY = (int) (getHeight() - fm.bottom - fm.top) / 2;
       canvas.drawText(pureText, textX, textY, pureTextPaint);
+    }
+    if (drawableLeft != null) {
+      int drawableTop = (getHeight() - drawableLeft.getIntrinsicHeight()) / 2;
+      drawableLeft.setBounds(originalPaddingLeft, drawableTop,
+          originalPaddingLeft + drawableLeft.getIntrinsicWidth(),
+          drawableTop + drawableLeft.getIntrinsicHeight());
+      drawableLeft.draw(canvas);
+//      canvas.drawBitmap(drawableLeft,originalPaddingLeft,getPaddingTop(),mBitPaint);
+    }
+    if (drawableRight != null) {
+      int drawableTop = (getHeight() - drawableRight.getIntrinsicHeight()) / 2;
+      drawableRight.setBounds(getWidth()-originalPaddingRight-drawableRight.getIntrinsicWidth(), drawableTop,
+          getWidth()-originalPaddingRight,
+          drawableTop + drawableRight.getIntrinsicHeight());
+      drawableRight.draw(canvas);
     }
     super.onDraw(canvas);
   }

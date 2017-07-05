@@ -51,7 +51,9 @@
       app:viewDivide="bothPartBottom"
       app:pureTextColor="@color/ignore_title"
       app:pureTextSize="@dimen/h5"
-      app:dividerColor="@color/red" />
+      app:dividerColor="@color/red"
+      android:drawableRight="@drawable/vec_right"
+      android:drawableLeft="@drawable/vec_right"/>
     <cn.com.epsoft.common.view.PureRowTextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -65,7 +67,9 @@
       app:viewDivide="allBottom"
       app:pureTextColor="@color/title"
       app:pureTextSize="@dimen/h4"
-      app:dividerColor="@color/black" />
+      app:dividerColor="@color/black"
+      android:drawableLeft="@drawable/vec_right"
+      android:drawableRight="@drawable/vec_right"/>
     </LinearLayout>
 
 </LinearLayout>
