@@ -103,7 +103,7 @@ public class PureRowTextView extends AppCompatTextView {
 
   boolean frist = true;
 
-  int originalPaddingLeft, originalPaddingRight, drawableLeftWidth, drawableRightWidth;
+  int originalPaddingLeft, originalPaddingRight, drawableLeftWidth, drawableRightWidth, drawablePadding;
   Drawable drawableLeft, drawableRight;
 
   @Override
@@ -111,6 +111,7 @@ public class PureRowTextView extends AppCompatTextView {
     super.onAttachedToWindow();
     originalPaddingLeft = getPaddingLeft();
     originalPaddingRight = getPaddingRight();
+    drawablePadding = getCompoundDrawablePadding();
     if (getCompoundDrawables() != null) {
       if (getCompoundDrawables().length > 0
           && getCompoundDrawables()[0] != null) {
@@ -138,31 +139,34 @@ public class PureRowTextView extends AppCompatTextView {
   }
 
   private void calculationTextXByPureLeft() {
+    Float textLength = 0f;
+    textX = drawablePadding
+        + drawableLeftWidth;
     if (!TextUtils.isEmpty(pureText)) {
-      Float textLength = pureTextPaint.measureText(pureText);
-      textX = textLength.intValue() / 2 + originalPaddingRight + getCompoundDrawablePadding()
-          + drawableLeftWidth;
-      if (frist) {
-        frist = false;
-        setPadding(originalPaddingLeft + textX + textLength.intValue() / 2, getPaddingTop(),
-            originalPaddingRight+drawableRightWidth, getPaddingBottom());
-      }
+      textLength = pureTextPaint.measureText(pureText);
+      textX += textLength.intValue() / 2 + originalPaddingRight;
+    }
+    if (frist) {
+      frist = false;
+      setPadding(originalPaddingLeft + textX + textLength.intValue() / 2, getPaddingTop(),
+          originalPaddingRight + drawableRightWidth, getPaddingBottom());
     }
   }
 
   private void calculationTextXByPureRight() {
+    int paddingRight = originalPaddingRight * 2;
     if (!TextUtils.isEmpty(pureText)) {
       Float textLength = pureTextPaint.measureText(pureText);
-      int paddingRight = originalPaddingRight * 2 + textLength.intValue();
+      paddingRight += textLength.intValue();
       textX =
           getWidth() - textLength.intValue() / 2 - originalPaddingRight
-              - getCompoundDrawablePadding() - drawableRightWidth;
+              - drawablePadding - drawableRightWidth;
       paddingRight += drawableRightWidth;
-      if (frist) {
-        frist = false;
-        setPadding(originalPaddingLeft+drawableLeftWidth, getPaddingTop(),
-            paddingRight, getPaddingBottom());
-      }
+    }
+    if (frist) {
+      frist = false;
+      setPadding(originalPaddingLeft + drawableLeftWidth + drawablePadding, getPaddingTop(),
+          paddingRight, getPaddingBottom());
     }
   }
 
@@ -178,10 +182,6 @@ public class PureRowTextView extends AppCompatTextView {
       if (viewDivide == VIEWDIVIDE_PARTBOTTOM || viewDivide == VIEWDIVIDE_BOTHPARTBOTTOM
           || viewDivide == VIEWDIVIDE_PARTTOP) {
         lineX += originalPaddingLeft;
-//        if (getCompoundDrawables() != null && getCompoundDrawables()[0] != null) {
-//          lineX += getCompoundDrawablePadding();
-//          lineX += getCompoundDrawables()[0].getIntrinsicWidth();
-//        }
       }
       if (viewDivide != VIEWDIVIDE_ALLTOP && viewDivide != VIEWDIVIDE_PARTTOP) {
         canvas.drawLine(lineX, getHeight() - LINE_HEIGHT, getWidth(), getHeight() - LINE_HEIGHT,
@@ -202,12 +202,12 @@ public class PureRowTextView extends AppCompatTextView {
           originalPaddingLeft + drawableLeft.getIntrinsicWidth(),
           drawableTop + drawableLeft.getIntrinsicHeight());
       drawableLeft.draw(canvas);
-//      canvas.drawBitmap(drawableLeft,originalPaddingLeft,getPaddingTop(),mBitPaint);
     }
     if (drawableRight != null) {
       int drawableTop = (getHeight() - drawableRight.getIntrinsicHeight()) / 2;
-      drawableRight.setBounds(getWidth()-originalPaddingRight-drawableRight.getIntrinsicWidth(), drawableTop,
-          getWidth()-originalPaddingRight,
+      drawableRight.setBounds(getWidth() - originalPaddingRight - drawableRight.getIntrinsicWidth(),
+          drawableTop,
+          getWidth() - originalPaddingRight,
           drawableTop + drawableRight.getIntrinsicHeight());
       drawableRight.draw(canvas);
     }
