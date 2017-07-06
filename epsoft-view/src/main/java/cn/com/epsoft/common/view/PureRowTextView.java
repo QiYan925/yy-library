@@ -190,6 +190,8 @@ public class PureRowTextView extends AppCompatTextView {
       }
       if(viewDivide ==VIEWDIVIDE_BOTHPART){
         canvas.drawLine(lineX, 0, getWidth(), 0, lineDrawablePaint);
+      }else if(viewDivide == VIEWDIVIDE_BOTHPARTTOP){
+        canvas.drawLine(originalPaddingLeft, 0, getWidth(), 0, lineDrawablePaint);
       }
     }
     if (!TextUtils.isEmpty(pureText)) {
@@ -259,13 +261,14 @@ public class PureRowTextView extends AppCompatTextView {
   public final static int VIEWDIVIDE_ALLTOP = 4;
   public final static int VIEWDIVIDE_PARTTOP = 5;
   public final static int VIEWDIVIDE_BOTHPART = 6;
+  public final static int VIEWDIVIDE_BOTHPARTTOP = 7;
 
   public void setViewDivide(@ViewDivide int viewDivide) {
     this.viewDivide = viewDivide;
   }
 
   @IntDef({VIEWDIVIDE_NONE, VIEWDIVIDE_ALLBOTTOM, VIEWDIVIDE_PARTBOTTOM, VIEWDIVIDE_BOTHALL,
-      VIEWDIVIDE_BOTHPARTBOTTOM, VIEWDIVIDE_ALLTOP, VIEWDIVIDE_PARTTOP,VIEWDIVIDE_BOTHPART})
+      VIEWDIVIDE_BOTHPARTBOTTOM, VIEWDIVIDE_ALLTOP, VIEWDIVIDE_PARTTOP,VIEWDIVIDE_BOTHPART,VIEWDIVIDE_BOTHPARTTOP})
   @Retention(RetentionPolicy.SOURCE)
   public @interface ViewDivide {
 

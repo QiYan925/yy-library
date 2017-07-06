@@ -22,8 +22,10 @@
     <enum name="allTop" value="4"/>
     <!--底部线条随文字显示-->
     <enum name="partTop" value="5"/>
-    <!--上下线条全显示断断续续-->
+    <!--上下线条显示带padding-->
     <enum name="bothPart" value="6"/>
+    <!--上显示带padding下线条全显示-->
+    <enum name="bothPartTop" value="7"/>
   </attr>
   <attr format="enum" name="divideType">
     <enum name="gone" value="-1"/>
