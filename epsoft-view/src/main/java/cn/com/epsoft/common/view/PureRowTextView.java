@@ -67,6 +67,12 @@ public class PureRowTextView extends AppCompatTextView {
   Paint mBitPaint;
   int textX;
 
+
+  boolean frist = true;
+
+  int originalPaddingLeft, originalPaddingRight, drawableLeftWidth, drawableRightWidth, drawablePadding;
+  Drawable drawableLeft, drawableRight;
+
   public PureRowTextView(Context context) {
     this(context, null);
   }
@@ -99,16 +105,6 @@ public class PureRowTextView extends AppCompatTextView {
     mBitPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     mBitPaint.setFilterBitmap(true);
     mBitPaint.setDither(true);
-  }
-
-  boolean frist = true;
-
-  int originalPaddingLeft, originalPaddingRight, drawableLeftWidth, drawableRightWidth, drawablePadding;
-  Drawable drawableLeft, drawableRight;
-
-  @Override
-  protected void onAttachedToWindow() {
-    super.onAttachedToWindow();
     originalPaddingLeft = getPaddingLeft();
     originalPaddingRight = getPaddingRight();
     drawablePadding = getCompoundDrawablePadding();
@@ -125,9 +121,6 @@ public class PureRowTextView extends AppCompatTextView {
       }
       setCompoundDrawables(null, null, null, null);
     }
-    if (pureDirection == PURE_DIRECTION_LEFT) {
-      calculationTextXByPureLeft();
-    }
   }
 
   @Override
@@ -135,12 +128,14 @@ public class PureRowTextView extends AppCompatTextView {
     super.onSizeChanged(w, h, oldw, oldh);
     if (pureDirection == PURE_DIRECTION_RIGHT) {
       calculationTextXByPureRight();
+    } else if (pureDirection == PURE_DIRECTION_LEFT) {
+      calculationTextXByPureLeft();
     }
   }
 
   private void calculationTextXByPureLeft() {
     Float textLength = 0f;
-    textX = (drawableLeftWidth==0)?0:(drawablePadding + drawableLeftWidth);
+    textX = (drawableLeftWidth == 0) ? 0 : (drawablePadding + drawableLeftWidth);
     if (!TextUtils.isEmpty(pureText)) {
       textLength = pureTextPaint.measureText(pureText);
       textX += textLength.intValue() / 2 + originalPaddingRight;
@@ -148,7 +143,8 @@ public class PureRowTextView extends AppCompatTextView {
     if (frist) {
       frist = false;
       setPadding(originalPaddingLeft + textX + textLength.intValue() / 2, getPaddingTop(),
-          originalPaddingRight + ((drawableRightWidth==0)?0:(drawablePadding + drawableRightWidth)), getPaddingBottom());
+          originalPaddingRight + ((drawableRightWidth == 0) ? 0
+              : (drawablePadding + drawableRightWidth)), getPaddingBottom());
     }
   }
 
@@ -164,7 +160,8 @@ public class PureRowTextView extends AppCompatTextView {
     }
     if (frist) {
       frist = false;
-      setPadding(originalPaddingLeft +((drawableLeftWidth==0)?0:(drawablePadding + drawableLeftWidth)), getPaddingTop(),
+      setPadding(originalPaddingLeft + ((drawableLeftWidth == 0) ? 0
+              : (drawablePadding + drawableLeftWidth)), getPaddingTop(),
           paddingRight, getPaddingBottom());
     }
   }
@@ -188,9 +185,9 @@ public class PureRowTextView extends AppCompatTextView {
       } else if (viewDivide == VIEWDIVIDE_PARTTOP) {
         canvas.drawLine(lineX, 0, getWidth(), 0, lineDrawablePaint);
       }
-      if(viewDivide ==VIEWDIVIDE_BOTHPART){
+      if (viewDivide == VIEWDIVIDE_BOTHPART) {
         canvas.drawLine(lineX, 0, getWidth(), 0, lineDrawablePaint);
-      }else if(viewDivide == VIEWDIVIDE_BOTHPARTTOP){
+      } else if (viewDivide == VIEWDIVIDE_BOTHPARTTOP) {
         canvas.drawLine(originalPaddingLeft, 0, getWidth(), 0, lineDrawablePaint);
       }
     }
@@ -268,7 +265,8 @@ public class PureRowTextView extends AppCompatTextView {
   }
 
   @IntDef({VIEWDIVIDE_NONE, VIEWDIVIDE_ALLBOTTOM, VIEWDIVIDE_PARTBOTTOM, VIEWDIVIDE_BOTHALL,
-      VIEWDIVIDE_BOTHPARTBOTTOM, VIEWDIVIDE_ALLTOP, VIEWDIVIDE_PARTTOP,VIEWDIVIDE_BOTHPART,VIEWDIVIDE_BOTHPARTTOP})
+      VIEWDIVIDE_BOTHPARTBOTTOM, VIEWDIVIDE_ALLTOP, VIEWDIVIDE_PARTTOP, VIEWDIVIDE_BOTHPART,
+      VIEWDIVIDE_BOTHPARTTOP})
   @Retention(RetentionPolicy.SOURCE)
   public @interface ViewDivide {
 
