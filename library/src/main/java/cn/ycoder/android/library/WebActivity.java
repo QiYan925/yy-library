@@ -45,10 +45,10 @@ public class WebActivity extends ToolbarActivity implements
 
   private static final String TAG = WebActivity.class.getSimpleName();
 
-  private static final String EXTRA_URL = "extra_url";
-  private static final String EXTRA_TITLE = "extra_title";
+  static final String EXTRA_URL = "extra_url";
+  static final String EXTRA_TITLE = "extra_title";
 
-  private static final Map<String, Integer> URL_POSITION_CACHES = new HashMap<>();
+  static final Map<String, Integer> URL_POSITION_CACHES = new HashMap<>();
 
   NumberProgressBar progressbar;
   ObservableWebView webView;
