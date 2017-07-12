@@ -53,7 +53,7 @@ public class TestFragment extends ToolbarFragment implements TestPresenter.View 
   @Override
   public void onLoadResult() {
     ToastUtils.showLong("加载成功");
-    multipleStatusView.showContent();
+    multipleStatusView.showNoNetwork();
   }
 
   @Override
