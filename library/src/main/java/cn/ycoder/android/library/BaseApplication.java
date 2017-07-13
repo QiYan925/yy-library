@@ -88,7 +88,15 @@ public abstract class BaseApplication extends Application {
     }
     return null;
   }
-
+  /**
+   * 得到tag数据
+   */
+  public Object getTag(String tag,Object defaultValue) {
+    if (mAppTag != null) {
+      return mAppTag.getTag(tag);
+    }
+    return defaultValue;
+  }
   /**
    * 设置tag数据
    */
