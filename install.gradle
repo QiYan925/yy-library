@@ -46,6 +46,6 @@ ext {
             "convenientbanner"      : 'com.bigkoo:convenientbanner:2.0.5',
             "PhotoView"             : 'com.github.chrisbanes:PhotoView:2.0.0',
             "rxbinding"             : 'com.jakewharton.rxbinding2:rxbinding:2.0.0',
-            "WheelPicker"           : 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
+            "PickerView"           : 'com.contrarywind:Android-PickerView:3.2.5'
     ]
 }

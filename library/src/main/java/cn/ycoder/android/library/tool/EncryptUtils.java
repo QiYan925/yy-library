@@ -907,4 +907,35 @@ public final class EncryptUtils {
         }
         return true;
     }
+
+    /**
+     *  MD5加密
+     * @param bytes 字节数组
+     * @return 32进制密文
+     */
+    public static String bytes32HexString(byte[] bytes) {
+        StringBuilder sb = new StringBuilder(bytes.length * 2);
+        for (int i = 0; i < bytes.length; i++) {
+            sb.append(hexDigits[(bytes[i] & 0xf0) >>> 4]);
+            sb.append(hexDigits[bytes[i] & 0x0f]);
+        }
+        return sb.toString();
+    }
+
+    /**
+     *  MD5加密
+     * @param data 明文字符串
+     * @return 32进制密文
+     */
+    public static String encrypt32MD5ToString(String data) {
+        try { // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(data.getBytes());
+            byte messageDigest[] = digest.digest();
+            return bytes32HexString(messageDigest);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }
