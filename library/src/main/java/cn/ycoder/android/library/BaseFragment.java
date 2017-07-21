@@ -8,6 +8,7 @@ import android.support.annotation.StringRes;
 import android.view.View;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import cn.ycoder.android.library.tool.ActivitiesManager;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 /**
@@ -36,6 +37,7 @@ public abstract class BaseFragment extends RxFragment {
   }
 
   public boolean onBackPressed() {
+    ActivitiesManager.getInstance().finishActivity(getActivity());
     return false;
   }
 
