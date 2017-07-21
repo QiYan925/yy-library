@@ -10,6 +10,7 @@ import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import cn.ycoder.android.library.tool.ActivitiesManager;
+import com.alibaba.android.arouter.facade.Postcard;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 /**
@@ -17,6 +18,7 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
  * @created at 2017/3/9.
  */
 public class BaseActivity extends RxAppCompatActivity {
+  public final static String TAG_HISTORY_POSTCARD = "historyPostcard";
 
   private ProgressDialog dialog;
 
@@ -88,5 +90,20 @@ public class BaseActivity extends RxAppCompatActivity {
   public void onBackPressed() {
     super.onBackPressed();
     ActivitiesManager.getInstance().finishActivity(this);
+    if (destroyClearPostcard() && BaseApplication.getInstance() != null) {
+      Postcard postcard = (Postcard) BaseApplication.getInstance()
+          .getTag(TAG_HISTORY_POSTCARD);
+      if (postcard != null) {
+        //清理意图
+        BaseApplication.getInstance().setTag(TAG_HISTORY_POSTCARD,null);
+      }
+    }
+  }
+
+  /**
+   * 销毁的时候清理意图
+   */
+  protected boolean destroyClearPostcard() {
+    return true;
   }
 }
