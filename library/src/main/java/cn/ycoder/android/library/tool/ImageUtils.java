@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
 import android.support.v4.graphics.drawable.DrawableCompat;
 
 /**
@@ -24,9 +25,9 @@ public class ImageUtils {
         return drawable1;
     }
 
-    public static int getResource(String imageName) {
+    public static int getDrawableResource(String drawableName,@DrawableRes int defaultRes) {
         Context ctx = Utils.getContext();
-        int resId = ctx.getResources().getIdentifier(imageName, "drawable", ctx.getPackageName());
+        int resId = ctx.getResources().getIdentifier(drawableName, "drawable", ctx.getPackageName());
         return resId;
     }
 }
