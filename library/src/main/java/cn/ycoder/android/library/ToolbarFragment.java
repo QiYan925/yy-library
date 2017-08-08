@@ -42,6 +42,9 @@ public abstract class ToolbarFragment extends BaseFragment {
           onBackPressed();
         }
       });
+      if (!canBack()) {
+        toolbar.setNavigationIcon(null);
+      }
       ActionBar actionBar = ((BaseActivity) getActivity()).getSupportActionBar();
       if (actionBar != null) {
         actionBar.setDisplayHomeAsUpEnabled(canBack());
