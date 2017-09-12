@@ -90,7 +90,19 @@ public class PureRowTextView extends AppCompatTextView {
     //noinspection WrongConstant
     this.viewDivide = ta.getInt(R.styleable.PureRowTextView_viewDivide, VIEWDIVIDE_NONE);
     this.pureDirection = ta.getInt(R.styleable.PureRowTextView_pureDirection, PURE_DIRECTION_RIGHT);
+    int spacing = ta.getInt(R.styleable.PureRowTextView_spacing, 0);
     ta.recycle();
+    StringBuilder spacingSb = new StringBuilder();
+    for (int i = 0; i < spacing; i++) {
+      spacingSb.append("  ");
+    }
+    if (!TextUtils.isEmpty(pureText)) {
+      if (pureDirection == PURE_DIRECTION_LEFT) {
+        pureText = pureText + spacingSb;
+      } else {
+        pureText = spacingSb + pureText;
+      }
+    }
     pureTextPaint = new Paint();
     pureTextPaint.setAntiAlias(true);
     pureTextPaint.setColor(pureTextColor);
@@ -138,11 +150,13 @@ public class PureRowTextView extends AppCompatTextView {
     textX = (drawableLeftWidth == 0) ? 0 : (drawablePadding + drawableLeftWidth);
     if (!TextUtils.isEmpty(pureText)) {
       textLength = pureTextPaint.measureText(pureText);
-      textX += textLength.intValue() / 2 + originalPaddingRight;
+      textX += textLength.intValue() / 2 + originalPaddingLeft;
+    }else{
+      textX +=originalPaddingLeft;
     }
     if (frist) {
       frist = false;
-      setPadding(originalPaddingLeft + textX + textLength.intValue() / 2, getPaddingTop(),
+      setPadding(textX + textLength.intValue() / 2, getPaddingTop(),
           originalPaddingRight + ((drawableRightWidth == 0) ? 0
               : (drawablePadding + drawableRightWidth)), getPaddingBottom());
     }

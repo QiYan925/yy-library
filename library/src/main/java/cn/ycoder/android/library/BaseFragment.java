@@ -24,7 +24,7 @@ public abstract class BaseFragment extends RxFragment {
    *
    * @param view 视图
    */
-  protected final void bindView(View view) {
+  protected void bindView(View view) {
     this.unbinder = ButterKnife.bind(this, view);
   }
 

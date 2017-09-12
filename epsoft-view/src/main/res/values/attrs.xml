@@ -51,6 +51,7 @@
     <attr name="viewDivide"/>
     <attr name="pureDirection"/>
     <attr name="dividerColor"/>
+    <attr name="spacing"/>
   </declare-styleable>
 
 

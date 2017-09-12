@@ -20,7 +20,7 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 public class BaseActivity extends RxAppCompatActivity {
   public final static String TAG_HISTORY_POSTCARD = "historyPostcard";
 
-  private ProgressDialog dialog;
+  protected ProgressDialog dialog;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {

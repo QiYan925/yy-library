@@ -14,6 +14,11 @@ import cn.ycoder.android.library.tool.LogUtils;
 
 public abstract class ToolbarFragment extends BaseFragment {
 
+  @Override
+  protected void bindView(View view) {
+    super.bindView(view);
+  }
+
   protected Toolbar toolbar;
 
   public void bindToolbarView(View view, int titleRes) {
