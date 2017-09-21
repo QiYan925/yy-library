@@ -93,7 +93,10 @@ public abstract class BaseApplication extends Application {
    */
   public Object getTag(String tag,Object defaultValue) {
     if (mAppTag != null) {
-      return mAppTag.getTag(tag);
+      Object result = mAppTag.getTag(tag);
+      if (result != null) {
+        return result;
+      }
     }
     return defaultValue;
   }

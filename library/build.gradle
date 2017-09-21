@@ -36,8 +36,6 @@ dependencies {
     //Android布局
     compile rootProject.ext.dependencies["appcompat-v7"]
     compile rootProject.ext.dependencies["recyclerview-v7"]
-    compile rootProject.ext.dependencies["design"]
-    compile rootProject.ext.dependencies["constraint-layout"]
     //控件注入
     compile rootProject.ext.dependencies["butterknife"]
     //RxJava
@@ -49,17 +47,7 @@ dependencies {
         exclude group: 'com.google.code.findbugs'
         exclude group: 'com.android.support'
     })
-    //网络请求
-    compile rootProject.ext.dependencies["retrofit"]
-    compile rootProject.ext.dependencies["logging-interceptor"]
     compile rootProject.ext.dependencies["converter-gson"]
-    compile rootProject.ext.dependencies["adapter-rxjava2"]
-    //列表控件
-    compile rootProject.ext.dependencies["multitype"]
-    //弹出框
-    compile rootProject.ext.dependencies["material-dialogs"]
-    //下拉加载
-    compile rootProject.ext.dependencies["ultra-ptr"]
 
     //路由https://github.com/alibaba/ARouter
     compile rootProject.ext.dependencies["arouter-api"]
